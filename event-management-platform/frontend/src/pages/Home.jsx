@@ -6,7 +6,7 @@ import { MdOutlineEventNote } from "react-icons/md";
 const Home = () => {
   const [events, setEvents] = useState([]);
   const [userId, setUserId] = useState(null);
-  const socket = io("http://localhost:5000");
+  const socket = io("https://event-manager-2m60.onrender.com");
   const [filteredEvents, setFilteredEvents] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [filterDate, setFilterDate] = useState("");
@@ -24,7 +24,7 @@ const Home = () => {
 
   const fetchEvents = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/events/all");
+      const res = await axios.get("https://event-manager-2m60.onrender.com/api/events/all");
       setEvents(res.data);
     } catch (err) {
       console.error("Error fetching events:", err);
@@ -35,7 +35,7 @@ const Home = () => {
     try {
       const token = localStorage.getItem("token");
       if (token) {
-        const res = await axios.get("http://localhost:5000/api/auth/me", {
+        const res = await axios.get("https://event-manager-2m60.onrender.com/api/auth/me", {
           headers: { Authorization: `Bearer ${token}` },
         });
         setUserId(res.data.userId);
@@ -49,7 +49,7 @@ const Home = () => {
     try {
       const token = localStorage.getItem("token");
       await axios.post(
-        `http://localhost:5000/api/events/${eventId}/attendees`,
+        `https://event-manager-2m60.onrender.com/api/events/${eventId}/attendees`,
         { userId },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -73,7 +73,7 @@ const Home = () => {
   const handleLeaveEvent = async (eventId) => {
     try {
       const token = localStorage.getItem("token");
-      await axios.delete(`http://localhost:5000/api/events/${eventId}/attendees`, {
+      await axios.delete(`https://event-manager-2m60.onrender.com/api/events/${eventId}/attendees`, {
         headers: { Authorization: `Bearer ${token}` },
         data: { userId },
       });

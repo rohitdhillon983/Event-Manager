@@ -9,7 +9,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/login", formData);
+      const res = await axios.post("https://event-manager-2m60.onrender.com/api/auth/login", formData);
       localStorage.setItem("token", res.data.token); // Store the token
       navigate("/dashboard"); // Redirect to the dashboard
     } catch (err) {

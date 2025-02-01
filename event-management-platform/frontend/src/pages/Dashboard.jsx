@@ -15,7 +15,7 @@ const Dashboard = () => {
   const fetchEvents = async () => {
     try {
       const token = localStorage.getItem("token");
-      const res = await axios.get("http://localhost:5000/api/events/getEvents", {
+      const res = await axios.get("https://event-manager-2m60.onrender.com/api/events/getEvents", {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -35,7 +35,7 @@ const Dashboard = () => {
   const handleCreateEvent = async (eventData) => {
     try {
       const token = localStorage.getItem("token");
-      await axios.post("http://localhost:5000/api/events", eventData, {
+      await axios.post("https://event-manager-2m60.onrender.com/api/events", eventData, {
         headers: { Authorization: `Bearer ${token}` },
       });
       fetchEvents();
@@ -48,7 +48,7 @@ const Dashboard = () => {
   const handleUpdateEvent = async (eventData) => {
     try {
       const token = localStorage.getItem("token");
-      await axios.put(`http://localhost:5000/api/events/${selectedEvent._id}`, eventData, {
+      await axios.put(`https://event-manager-2m60.onrender.com/api/events/${selectedEvent._id}`, eventData, {
         headers: { Authorization: `Bearer ${token}` },
       });
       fetchEvents();
@@ -62,7 +62,7 @@ const Dashboard = () => {
   const handleDeleteEvent = async (eventId) => {
     try {
       const token = localStorage.getItem("token");
-      await axios.delete(`http://localhost:5000/api/events/${eventId}`, {
+      await axios.delete(`https://event-manager-2m60.onrender.com/api/events/${eventId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       fetchEvents();

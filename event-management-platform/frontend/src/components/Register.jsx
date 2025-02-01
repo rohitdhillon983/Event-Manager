@@ -9,7 +9,7 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/api/auth/register", formData);
+      await axios.post("https://event-manager-2m60.onrender.com/api/auth/register", formData);
       navigate("/login"); // Redirect to the login page after registration
     } catch (err) {
       console.error("Error registering:", err);

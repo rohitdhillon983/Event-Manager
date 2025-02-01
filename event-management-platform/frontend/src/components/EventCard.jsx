@@ -4,14 +4,14 @@ import { io } from "socket.io-client";
 
 const EventCard = ({ event, onDelete, onUpdate }) => {
   const [attendees, setAttendees] = useState(event.attendees.length);
-  const socket = io("http://localhost:5000");
+  const socket = io("https://event-manager-2m60.onrender.com");
 
   useEffect(() => {
     // Listen for real-time attendee updates
     socket.on("attendeesUpdated", (updatedEventId) => {
       if (updatedEventId === event._id) {
         // Fetch the updated event data
-        axios.get(`http://localhost:5000/api/events/${event._id}`)
+        axios.get(`https://event-manager-2m60.onrender.com/api/events/${event._id}`)
           .then((res) => setAttendees(res.data.attendees.length))
           .catch((err) => console.error(err));
       }
